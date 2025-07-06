@@ -1,0 +1,23 @@
+option('system-wide', type : 'boolean', value : true,
+    description : 'Install system-wide rather than isolated inside a Python environment'
+)
+
+option('code-only', type : 'boolean', value : false,
+    description : 'Do not install additional files such as configuration or documentation'
+)
+
+option('eprefix', type : 'string',
+    description : 'Prefix directory for Mirrortool to operate under'
+)
+
+option('mirrortool-base', type : 'string',
+    description : 'Mirrortool installation base directory'
+)
+
+option('mirrortool-bindir', type : 'string',
+    description : 'Internal Mirrortool executables directory'
+)
+
+option('native-extensions', type : 'boolean', value : true,
+    description : 'Build and install the native extensions for better performance'
+)
