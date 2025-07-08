@@ -184,6 +184,8 @@ def _async_fetch_tasks(config, hash_filter, repo_config, digests_future, cpv, lo
         new_uri_map = {}
         restrict_fetch = "fetch" in restrict
         restrict_mirror = restrict_fetch or "mirror" in restrict
+        restrict_only = getattr(config.options, "restrict_only", False)
+        restrict_include = getattr(config.options, "restrict_include", False)
         for filename, uri_tuple in uri_map.items():
             new_uris = []
             for uri in uri_tuple:
@@ -194,17 +196,27 @@ def _async_fetch_tasks(config, hash_filter, repo_config, digests_future, cpv, lo
 
                 # skip fetch-restricted files unless overridden via fetch+
                 # or mirror+
+                is_restricted = False
                 if restrict_fetch and not override_fetch:
-                    continue
+                    is_restricted = True
                 # skip mirror-restricted files unless override via mirror+
                 # or in config_mirror_exemptions
-                if restrict_mirror and not override_mirror:
+                if restrict_mirror and not override_mirror and not is_restricted:
                     if config.restrict_mirror_exemptions is None or not uri.startswith(
                         "mirror://"
                     ):
+                        is_restricted = True
+                    else:
+                        mirror_name = uri.split("/", 3)[2]
+                        if mirror_name not in config.restrict_mirror_exemptions:
+                            is_restricted = True
+                # restrict_only: only restricted files
+                if restrict_only:
+                    if not is_restricted:
                         continue
-                    mirror_name = uri.split("/", 3)[2]
-                    if mirror_name not in config.restrict_mirror_exemptions:
+                # restrict_include: allow restricted files (do not skip them)
+                elif not restrict_include:
+                    if is_restricted:
                         continue
                 # if neither fetch or mirror restriction applies to the URI
                 # or it is exempted from them, readd it (with fetch+/mirror+

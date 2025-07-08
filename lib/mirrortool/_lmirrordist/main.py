@@ -196,6 +196,16 @@ common_options = (
         "the one present in the distfiles directory",
         "metavar": "FILE",
     },
+    {
+        "longopt": "--restrict-only",
+        "help": "download only files that are restricted (not fetched by default)",
+        "action": "store_true",
+    },
+    {
+        "longopt": "--restrict-include",
+        "help": "allow fetching restricted files (normally skipped)",
+        "action": "store_true",
+    },
 )
 
 

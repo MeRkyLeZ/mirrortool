@@ -133,6 +133,12 @@ Specifies alternate mirror \fIlayout.conf\fR file to use in order
 to select the desired distfile layout. If not specified,
 \fIlayout.conf\fR in \fB\-\-distfiles\fR directory will be used
 if present, otherwise flat layout will be assumed.
+.TP
+\fB\-\-restrict-only\fR
+Download only those distfiles that are not fetched by default due to RESTRICT (e.g., mirror or fetch).
+.TP
+\fB\-\-restrict-include\fR
+Allow fetching restricted files (normally skipped due to RESTRICT="mirror" or "fetch"). If used together with --restrict-only, only --restrict-only is applied.
 .SH "REPORTING BUGS"
 Please report bugs via GitHub
 .SH "THANKS"

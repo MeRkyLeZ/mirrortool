@@ -38,8 +38,8 @@ lmirrordist \- утилита для зеркалирования distfiles па
 Ограничение средней нагрузки для запуска новых заданий.
 .TP
 \fB\-\-tries\fR=\fITRIES\fR  
-Максимальное число попыток для одного файла, 0 — без ограничений
-(по умолчанию 10).
+Максимальное число попыток для одного файла, 0 — без ограничений
+(по умолчанию 10).
 .TP
 \fB\-\-repo\fR=\fIREPO\fR  
 Имя репозитория для работы.
@@ -52,7 +52,7 @@ lmirrordist \- утилита для зеркалирования distfiles па
 опции имеет тот же формат, что и repos.conf (см. \fBportage\fR(5)).
 .TP
 \fB\-\-strict\-manifests=\fR<y|n>  
-Явно задать значение FEATURES=“strict”.
+Явно задать значение FEATURES="strict".
 .TP
 \fB\-\-failure\-log\fR=\fIFILE\fR  
 Файл для логирования неудачных загрузок с табуляцией для
@@ -92,7 +92,7 @@ lmirrordist \- утилита для зеркалирования distfiles па
 .TP
 \fB\-\-restrict\-mirror\-exemptions\fR=\fIRESTRICT_EXEMPTIONS\fR  
 Список зеркал через запятую, для которых
-игнорируется RESTRICT=“mirror” (см. \fBebuild\fR(5)).
+игнорируется RESTRICT="mirror" (см. \fBebuild\fR(5)).
 .TP
 \fB\-\-verify\-existing\-digest\fR  
 Использовать digest для проверки
@@ -114,14 +114,14 @@ lmirrordist \- утилита для зеркалирования distfiles па
 .TP
 \fB\-\-recycle\-deletion\-delay\fR=\fISECONDS\fR  
 Задержка удаления файлов из recycle dir
-в секундах (по умолчанию эквивалент 60 дням).
+в секундах (по умолчанию эквивалент 60 дням).
 .TP
 \fB\-\-fetch\-log\-dir\fR=\fIDIR\fR  
 Каталог для отдельных логов каждой загрузки.
 .TP
 \fB\-\-whitelist\-from\fR=\fIFILE\fR  
 Файл со списком разрешённых файлов по
-одному на строку, строки, начинающиеся с #,
+одному на строку, строки, начинающиеся с #,
 игнорируются. Можно указывать многократно.
 .TP
 \fB\-\-symlinks\fR  
@@ -133,6 +133,12 @@ lmirrordist \- утилита для зеркалирования distfiles па
 макета distfiles. Если не указан, ищется
 \fIlayout.conf\fR в каталоге \fB\-\-distfiles\fR,
 иначе используется пустой макет.
+.TP
+\fB\-\-restrict-only\fR  
+Скачивать только те distfiles, которые по умолчанию не скачиваются из-за ограничений RESTRICT (например, mirror или fetch).
+.TP
+\fB\-\-restrict-include\fR  
+Разрешить скачивание файлов с ограничениями RESTRICT (обычно пропускаются, например, mirror или fetch). Если указана вместе с --restrict-only, применяется только --restrict-only.
 .SH "СООБЩЕНИЕ О БАГАХ"
 Пожалуйста, сообщайте об ошибках через GitHub
 .SH "БЛАГОДАРНОСТИ"
